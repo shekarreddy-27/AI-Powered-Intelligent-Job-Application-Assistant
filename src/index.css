@@ -1,0 +1,441 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Indigo Primary */
+    --primary: 243 75% 59%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 243 75% 59%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 243 75% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ==========================================
+   PREMIUM SAAS THEME OVERRIDES (SLATE-BLUE & GLASSMORPHISM)
+   ========================================== */
+
+/* 1. CSS Custom Property Overrides for Muted Slate-Blue Theme */
+:root:not(.dark) {
+  --primary: 215 50% 48%; /* Slate-Blue primary accent */
+  --ring: 215 50% 48%;
+  --foreground: 222.2 47.4% 11.2%; /* Dark Charcoal text color */
+}
+
+:root.dark {
+  --primary: 215 60% 55%;
+  --ring: 215 60% 55%;
+}
+
+/* Enforce the professional Slate-Blue color theme globally */
+.text-indigo-600 {
+  color: #3b66a6 !important;
+}
+.bg-indigo-600 {
+  background-color: #3b66a6 !important;
+}
+.hover\:bg-indigo-700:hover {
+  background-color: #2f5387 !important;
+}
+.text-indigo-700 {
+  color: #2f5387 !important;
+}
+.text-indigo-900 {
+  color: #1e3557 !important;
+}
+.bg-indigo-50 {
+  background-color: rgba(59, 102, 166, 0.06) !important;
+}
+.bg-indigo-100 {
+  background-color: rgba(59, 102, 166, 0.12) !important;
+}
+.border-indigo-100 {
+  border-color: rgba(59, 102, 166, 0.15) !important;
+}
+
+/* Dark Mode equivalents for indigo utilities */
+.dark .text-indigo-400 {
+  color: #729ad4 !important;
+}
+.dark .bg-indigo-500\/10 {
+  background-color: rgba(114, 154, 212, 0.1) !important;
+}
+
+/* Sophisticated semi-transparent badge status colors */
+/* Success (Interview) - Emerald/Green Tint */
+.bg-green-500 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #047857 !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+}
+.hover\:bg-green-600:hover {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Warning (Applied) - Amber/Orange Tint */
+.bg-yellow-500 {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: #b45309 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+.hover\:bg-yellow-600:hover {
+  background-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+/* Destructive (Rejected) - Red Tint */
+.bg-destructive {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: #b91c1c !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+.hover\:bg-destructive\/80:hover {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* 2. Animated Wavy Gradient Background */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Light Mode: Elegant slow shifting desaturated gradient of Indigo, Cool Grey, Lavender, and Teal */
+:root:not(.dark) body, 
+:root:not(.dark) div.flex.min-h-screen {
+  background: linear-gradient(135deg, #f1f5f9, #eef2ff, #f0fdfa, #f5f3ff, #e2e8f0, #eef2ff) !important;
+  background-size: 400% 400% !important;
+  animation: gradient-shift 24s ease-in-out infinite !important;
+}
+
+/* Dark Mode: Deep indigo, slate, and navy wave background */
+:root.dark body,
+:root.dark div.flex.min-h-screen {
+  background: linear-gradient(135deg, #020617, #0f172a, #1e1b4b, #0c1824, #020617) !important;
+  background-size: 400% 400% !important;
+  animation: gradient-shift 24s ease-in-out infinite !important;
+}
+
+/* 3. Premium Glassmorphism Element Styling */
+
+/* Main Sidebar Glassmorphism */
+aside.border-r.bg-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:root:not(.dark) aside.border-r.bg-card {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+:root.dark aside.border-r.bg-card {
+  background: rgba(15, 23, 42, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Header Glassmorphism */
+:root:not(.dark) header.bg-card,
+:root:not(.dark) header {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+:root.dark header.bg-card,
+:root.dark header {
+  background: rgba(15, 23, 42, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* General Cards Glassmorphism */
+.bg-card:not(aside):not(header) {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:root:not(.dark) .bg-card:not(aside):not(header) {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04) !important;
+}
+
+:root.dark .bg-card:not(aside):not(header) {
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Upcoming Actions Card (Tinted Indigo Glassmorphism) */
+:root:not(.dark) div.bg-indigo-50 {
+  background: rgba(238, 242, 255, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(224, 231, 255, 0.45) !important;
+  box-shadow: 0 8px 32px 0 rgba(79, 70, 229, 0.04) !important;
+}
+
+:root.dark div.bg-indigo-950\/20 {
+  background: rgba(30, 27, 75, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(99, 102, 241, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 4. Professional Mouse-Hover Micro-Interactions */
+
+/* Card Lift & Shadow expansion on Hover (KPI Metrics & normal cards) */
+:root:not(.dark) .bg-card:not(aside):not(header):hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px rgba(59, 102, 166, 0.1) !important;
+  border-color: rgba(59, 102, 166, 0.25) !important;
+}
+
+:root.dark .bg-card:not(aside):not(header):hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Upcoming Actions Card Lift & Hover */
+div.bg-indigo-50:hover, 
+div.bg-indigo-950\/20:hover {
+  transform: translateY(-4px) !important;
+}
+
+:root:not(.dark) div.bg-indigo-50:hover {
+  box-shadow: 0 16px 36px rgba(59, 102, 166, 0.12) !important;
+  border-color: rgba(59, 102, 166, 0.3) !important;
+}
+
+:root.dark div.bg-indigo-950\/20:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Sidebar Navigation Hover & Active States */
+aside nav a {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+aside nav a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 3.5px;
+  background-color: #3b66a6; /* Muted slate-blue */
+  border-radius: 0 4px 4px 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+aside nav a:hover::before,
+aside nav a.active::before {
+  transform: scaleY(1);
+}
+
+aside nav a:hover {
+  background-color: rgba(59, 102, 166, 0.08) !important;
+  color: #2f5387 !important;
+  transform: translateX(4px) !important;
+}
+
+aside nav a.active {
+  background-color: rgba(59, 102, 166, 0.12) !important;
+  color: #2f5387 !important;
+  font-weight: 600 !important;
+  transform: translateX(4px) !important;
+}
+
+/* Sidebar Settings Button Hover */
+aside button {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+aside button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 3.5px;
+  background-color: #3b66a6;
+  border-radius: 0 4px 4px 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+aside button:hover::before {
+  transform: scaleY(1);
+}
+
+aside button:hover {
+  background-color: rgba(59, 102, 166, 0.08) !important;
+  color: #2f5387 !important;
+  transform: translateX(4px) !important;
+}
+
+/* Upcoming Actions Arrow Button Slide Right */
+div.bg-indigo-50 button,
+div.bg-indigo-950\/20 button {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+div.bg-indigo-50 button:hover,
+div.bg-indigo-950\/20 button:hover {
+  transform: translateX(4px) !important;
+}
+
+/* Active Applications list items hover effect */
+div.flex.items-center.justify-between.p-4.border.rounded-lg {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:root:not(.dark) div.flex.items-center.justify-between.p-4.border.rounded-lg:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(59, 102, 166, 0.2) !important;
+  transform: translateX(4px) translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(59, 102, 166, 0.04) !important;
+}
+
+:root.dark div.flex.items-center.justify-between.p-4.border.rounded-lg:hover {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(99, 102, 241, 0.2) !important;
+  transform: translateX(4px) translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Profile Builder sidebar tab buttons hover/active indicator */
+.flex.flex-col.md\:flex-row.gap-8 aside button {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.flex.flex-col.md\:flex-row.gap-8 aside button:hover {
+  background-color: rgba(59, 102, 166, 0.06) !important;
+  color: #2f5387 !important;
+  padding-left: 20px !important;
+}
+
+.flex.flex-col.md\:flex-row.gap-8 aside button.bg-indigo-50,
+.flex.flex-col.md\:flex-row.gap-8 aside button.dark\:bg-indigo-950 {
+  background-color: rgba(59, 102, 166, 0.1) !important;
+  color: #2f5387 !important;
+  padding-left: 20px !important;
+}
+
+/* Input Fields Glassmorphism */
+input, select, textarea {
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  backdrop-filter: blur(4px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(59, 102, 166, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(59, 102, 166, 0.12) !important;
+  outline: none !important;
+}
+
+:root.dark input, :root.dark select, :root.dark textarea {
+  background: rgba(15, 23, 42, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+:root.dark input:focus, :root.dark select:focus, :root.dark textarea:focus {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
