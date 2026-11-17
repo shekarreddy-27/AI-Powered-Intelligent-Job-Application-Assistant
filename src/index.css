@@ -75,6 +75,7 @@
     @apply bg-background text-foreground;
   }
 }
+<<<<<<< HEAD
 
 /* ==========================================
    PREMIUM SAAS THEME OVERRIDES (SLATE-BLUE & GLASSMORPHISM)
@@ -439,3 +440,5 @@ input:focus, select:focus, textarea:focus {
   border-color: rgba(99, 102, 241, 0.4) !important;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
 }
+=======
+>>>>>>> 9aba4e418ba861129dc211f9213fe00c3de133f5
